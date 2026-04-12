@@ -37,7 +37,7 @@ function ItemSlot({ itemId }: { itemId: number }) {
         );
     }
     return (
-        <div className="relative w-7 h-7 rounded-lg overflow-hidden border border-pink-200 flex-shrink-0">
+        <div className="relative w-7 h-7 rounded-lg overflow-hidden border border-pink-200 shrink-0">
             <Image
                 src={getItemImageUrl(itemId)}
                 alt={`Item ${itemId}`}
@@ -106,7 +106,7 @@ export function MatchHistory({ matches, puuid }: Props) {
                                     className={`absolute left-0 top-0 bottom-0 w-1 ${winBar}`}
                                 />
 
-                                <div className="relative w-11 h-11 rounded-xl overflow-hidden border-2 border-white shadow-sm flex-shrink-0 ml-1">
+                                <div className="relative w-11 h-11 rounded-xl overflow-hidden border-2 border-white shadow-sm shrink-0 ml-1">
                                     <Image
                                         src={getChampionImageUrl(
                                             me.championName
@@ -118,7 +118,7 @@ export function MatchHistory({ matches, puuid }: Props) {
                                     />
                                 </div>
 
-                                <div className="flex flex-col gap-0.5 min-w-0 flex-shrink-0 w-24">
+                                <div className="flex flex-col gap-0.5 min-w-0 shrink-0 w-24">
                                     <p className="text-xs font-semibold text-gray-700 truncate">
                                         {me.championName}
                                     </p>
@@ -139,7 +139,7 @@ export function MatchHistory({ matches, puuid }: Props) {
                                     </p>
                                 </div>
 
-                                <div className="flex flex-col items-center gap-0.5 flex-shrink-0 w-20">
+                                <div className="flex flex-col items-center gap-0.5 shrink-0 w-20">
                                     <p className="text-sm font-bold text-gray-800">
                                         {me.kills}/{me.deaths}/{me.assists}
                                     </p>
@@ -154,7 +154,7 @@ export function MatchHistory({ matches, puuid }: Props) {
                                     </p>
                                 </div>
 
-                                <div className="hidden sm:flex items-center gap-1 flex-wrap max-w-[200px]">
+                                <div className="hidden sm:flex items-center gap-1 flex-wrap max-w-50">
                                     <div className="flex gap-0.5 mb-0.5">
                                         <div className="relative w-5 h-5 rounded overflow-hidden border border-white">
                                             <Image

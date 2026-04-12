@@ -112,7 +112,7 @@ export function ChampionPool() {
               key={champ.name}
               className="flex gap-3 rounded-xl border border-pink-100 bg-pink-50/40 p-3"
             >
-              <div className="relative w-12 h-12 rounded-xl overflow-hidden border-2 border-white shadow-sm flex-shrink-0">
+              <div className="relative w-12 h-12 rounded-xl overflow-hidden border-2 border-white shadow-sm shrink-0">
                 <Image
                   src={getChampionImageUrl(champ.name)}
                   alt={champ.name}

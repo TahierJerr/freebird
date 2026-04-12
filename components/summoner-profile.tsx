@@ -23,7 +23,7 @@ function WinRateBar({ wins, losses }: { wins: number; losses: number }) {
       </div>
       <div className="h-2 w-full rounded-full bg-rose-100 overflow-hidden">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-pink-400 to-emerald-400 transition-all"
+          className="h-full rounded-full bg-linear-to-r from-pink-400 to-emerald-400 transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -39,10 +39,10 @@ export function SummonerProfile({ account, summoner, leagues }: Props) {
 
   return (
     <Card className="overflow-hidden">
-      <div className="h-3 bg-gradient-to-r from-pink-300 via-rose-300 to-pink-400" />
+      <div className="h-3 bg-linear-to-r from-pink-300 via-rose-300 to-pink-400" />
       <CardContent className="pt-5">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-          <div className="relative flex-shrink-0">
+          <div className="relative shrink-0">
             <div className="relative w-24 h-24 rounded-2xl overflow-hidden border-2 border-pink-200 shadow-md">
               <Image
                 src={iconUrl}

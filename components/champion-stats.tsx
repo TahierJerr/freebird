@@ -82,7 +82,7 @@ export function ChampionStats({ matches, puuid }: Props) {
                                 key={champ.name}
                                 className="flex items-center gap-3 rounded-xl bg-pink-50/60 border border-pink-100 p-2.5"
                             >
-                                <div className="relative w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 border border-pink-200">
+                                <div className="relative w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-pink-200">
                                     <Image
                                         src={getChampionImageUrl(champ.name)}
                                         alt={champ.name}

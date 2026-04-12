@@ -8,7 +8,7 @@ import {
   getMatch,
 } from "@/lib/riot";
 import { SummonerProfile } from "@/components/summoner-profile";
-import { DraftHelper } from "@/components/draft-helper";
+import { PickAdvisor } from "@/components/pick-advisor";
 import { ItemizationGuide } from "@/components/itemization-guide";
 import { MatchHistory } from "@/components/match-history";
 import { ChampionStats } from "@/components/champion-stats";
@@ -108,8 +108,8 @@ export default async function HomePage() {
               leagues={data.leagues}
             />
 
-            {/* 2. draft helper. most important */}
-            <DraftHelper />
+            {/* 2. pick advisor. champ select tool */}
+            <PickAdvisor />
 
             {/* 3. itemization. second most important */}
             <ItemizationGuide />
