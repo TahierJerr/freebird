@@ -6,6 +6,7 @@ import {
   getLeagueEntries,
   getMatchIds,
   getMatch,
+  getMatchIdsFlex,
 } from "@/lib/riot";
 import { SummonerProfile } from "@/components/summoner-profile";
 import { PickAdvisor } from "@/components/pick-advisor";
@@ -44,15 +45,24 @@ async function fetchAllData() {
       leagues = [] as Awaited<ReturnType<typeof getLeagueEntries>>;
     }
 
-    let matchIds: string[] = [];
+    let matchIdsSolo: string[] = [];
+    let matchIdsFlex: string[] = [];
     try {
-      matchIds = await getMatchIds(account.puuid, 15);
+      matchIdsSolo = await getMatchIds(account.puuid, 15);
     } catch {
-      matchIds = [];
+      matchIdsSolo = [];
+    }
+    try {
+      matchIdsFlex = await getMatchIdsFlex(account.puuid, 15);
+    } catch {
+      matchIdsFlex = [];
     }
 
-    const matches = await Promise.all(
-      matchIds.map((id) => getMatch(id).catch(() => null)),
+    const matchesSolo = await Promise.all(
+      matchIdsSolo.map((id) => getMatch(id).catch(() => null)),
+    );
+    const matchesFlex = await Promise.all(
+      matchIdsFlex.map((id) => getMatch(id).catch(() => null)),
     );
 
     return {
@@ -60,7 +70,10 @@ async function fetchAllData() {
       account,
       summoner,
       leagues,
-      matches: matches.filter(Boolean) as Awaited<
+      matchesSolo: matchesSolo.filter(Boolean) as Awaited<
+        ReturnType<typeof getMatch>
+      >[],
+      matchesFlex: matchesFlex.filter(Boolean) as Awaited<
         ReturnType<typeof getMatch>
       >[],
     };
@@ -115,10 +128,18 @@ export default async function HomePage() {
             <ItemizationGuide />
 
             {/* 4. live stats from recent games */}
-            <ChampionStats matches={data.matches} puuid={data.account.puuid} />
+            <ChampionStats
+              matches={data.matchesFlex}
+              puuid={data.account.puuid}
+              queueType="RANKED_FLEX_SR"
+            />
 
             {/* 5. match history */}
-            <MatchHistory matches={data.matches} puuid={data.account.puuid} />
+            <MatchHistory
+              matches={data.matchesFlex}
+              puuid={data.account.puuid}
+              queueType="RANKED_FLEX_SR"
+            />
 
             {/* 6. support guide tips */}
             <SupportGuide />
