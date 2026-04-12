@@ -3307,17 +3307,17 @@ export function PickAdvisor() {
       <CardContent>
         <div className="flex flex-col sm:flex-row gap-3 mb-5">
           <ChampSelect
-            label="Enemy support"
-            value={enemySupport}
-            options={ENEMY_SUPPORTS}
-            onChange={setEnemySupport}
-            placeholder="Unknown / select..."
-          />
-          <ChampSelect
             label="Your ADC"
             value={allyAdc}
             options={ALLY_ADCS}
             onChange={setAllyAdc}
+            placeholder="Unknown / select..."
+          />
+          <ChampSelect
+            label="Enemy support"
+            value={enemySupport}
+            options={ENEMY_SUPPORTS}
+            onChange={setEnemySupport}
             placeholder="Unknown / select..."
           />
         </div>
