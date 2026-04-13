@@ -16,6 +16,7 @@ import { ChampionStats } from "@/components/champion-stats";
 import { SupportGuide } from "@/components/support-guide";
 import { ErrorState } from "@/components/error-state";
 import { Heart, Sparkles } from "lucide-react";
+import { PatchNotes } from "@/components/patch-notes";
 
 async function fetchAllData() {
   const apiKey = process.env.RIOT_API_KEY;
@@ -121,8 +122,11 @@ export default async function HomePage() {
               leagues={data.leagues}
             />
 
+
             {/* 2. pick advisor. champ select tool */}
             <PickAdvisor />
+
+            <PatchNotes />
 
             {/* 3. itemization. second most important */}
             <ItemizationGuide />
