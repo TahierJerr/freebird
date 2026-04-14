@@ -586,84 +586,6 @@ const POOL_META: Record<string, PoolMeta> = {
       "Dive comps (she is the primary target)",
     ],
   },
-  Janna: {
-    tier: "S",
-    wr: "52.7%",
-    blindPick: "great",
-    blindLabel: "S tier, best engage counter in pool",
-    adcSynergy: [
-      {
-        name: "Vayne",
-        reason:
-          "Ult repositions Vayne for Condemn walls, W stops dashes perfectly",
-      },
-      {
-        name: "KogMaw",
-        reason:
-          "Kog has zero mobility, Janna ult + E shield is his survival plan",
-      },
-      {
-        name: "Jinx",
-        reason:
-          "W knock-up into Jinx rocket = free kills, ult peels any dive off her",
-      },
-      {
-        name: "Caitlyn",
-        reason: "Safe poke lane, W peel turns any gap-close into a mistake",
-      },
-      {
-        name: "Ezreal",
-        reason:
-          "Both slippery, Janna W amplifies his blink mobility with bonus MS",
-      },
-    ],
-    goodVs: [
-      {
-        name: "Leona",
-        reason: "W knock-up stops her E+R combo mid-cast, ult pushes team away",
-      },
-      {
-        name: "Nautilus",
-        reason: "W interrupts his Q hook, ult displacement negates chain CC",
-      },
-      {
-        name: "Alistar",
-        reason: "Ult pushes him away after W+Q, denies all follow-up",
-      },
-      {
-        name: "Blitzcrank",
-        reason: "W knock-up stops Blitz repositioning after hook",
-      },
-      {
-        name: "Rell",
-        reason:
-          "Her engage requires getting close, Janna ult just ends the fight",
-      },
-    ],
-    badVs: [
-      {
-        name: "Xerath",
-        reason: "Long poke range punishes her weak laning phase hard",
-      },
-      {
-        name: "Vel'Koz",
-        reason: "Poke whittles her down before she can do anything useful",
-      },
-      {
-        name: "Senna",
-        reason: "Long-range poke wins lane against passive Janna",
-      },
-    ],
-    goodVsComp: [
-      "Any hard engage comp (Leona / Naut / Alistar / Rell)",
-      "Dive-heavy enemy teams",
-      "All-in burst comps",
-    ],
-    badVsComp: [
-      "Long-range poke comps",
-      "Passive farming lanes she can't punish",
-    ],
-  },
   Lulu: {
     tier: "S",
     wr: "52.8%",
@@ -759,7 +681,6 @@ const POOL = [
   "Nami",
   "Karma",
   "Seraphine",
-  "Janna",
   "Lulu",
 ];
 
@@ -803,7 +724,6 @@ function getRecommendations(
       Sona: 12, // OP tier
       Nami: 9, // S+ tier
       Lulu: 7, // S tier, still strong but below OP
-      Janna: 7, // S tier
       Seraphine: 6, // S tier
       Soraka: 6, // S tier
       Karma: 3, // A tier, nerfed twice
@@ -920,213 +840,6 @@ function getRecommendations(
     // ════════════════════════════════════════
 
     if (!enemyUnknown) {
-      // ── JANNA ──
-      if (champ === "Janna") {
-        if (isHardEngage) {
-          score += 30;
-          if (enemySupport === "Leona") {
-            reasons.push(
-              "Leona's engage is one of the hardest in the game, but Janna's W knock-up interrupts her mid-dash and ult pushes the whole team away after a Solar Flare",
-            );
-            tips.push(
-              "Pre-position W toward Leona when she walks up. If she Zenith Blades, you have a split-second to W before Eclipse lands",
-            );
-            tips.push(
-              "Save ult for after Leona lands, not during, push the whole dive away from your ADC",
-            );
-          } else if (enemySupport === "Nautilus") {
-            reasons.push(
-              "Janna's W can interrupt Nautilus mid-Dredge Line animation if timed correctly, and ult pushes him away if he anchors in",
-            );
-            tips.push(
-              "Hug your ADC's side so you can W Nautilus off them when he hooks. His ult knockup is where your ult shines most",
-            );
-          } else if (enemySupport === "Rell") {
-            reasons.push(
-              "Rell's Magnet Storm pulls everyone toward her, Janna ult literally reverses this, scattering the pull and saving your whole team",
-            );
-            tips.push(
-              "Let Rell engage first. The moment Magnet Storm activates, ult immediately to push everyone out of the zone",
-            );
-          } else if (enemySupport === "Alistar") {
-            reasons.push(
-              "Alistar's Pulverize + Headbutt combo launches your ADC into their team, Janna's E shield reduces the follow-up damage and W stops his next approach",
-            );
-            tips.push(
-              "Shield ADC pre-emptively when Alistar walks up aggressively. After the combo lands, use ult to push him away from your carries",
-            );
-          } else if (enemySupport === "Rakan") {
-            reasons.push(
-              "Rakan's all-in combo is flashy but telegraphed, Janna W timed on his Grand Entrance knock-up cancels it before the Quickness follow-up",
-            );
-            tips.push(
-              "Rakan has to walk up to engage. Use Q tornado as he approaches to give you reaction time on the combo",
-            );
-          } else {
-            reasons.push(
-              `${enemySupport}'s engage is exactly what Janna was built to counter. W + ult answer every dive`,
-            );
-            tips.push(
-              "Keep W ready. Janna's disengage kit shuts down engage supports harder than any other enchanter",
-            );
-          }
-          items.push({
-            name: "Shurelya's Battlesong",
-            why: "Speed burst helps you and your ADC escape the engage before follow-up lands",
-          });
-          items.push({
-            name: "Celestial Opposition",
-            why: "Slows enemies that crash into your team after the engage, punishes overzealous divers",
-          });
-        } else if (isHook && !isHardEngage) {
-          score += 15;
-          if (enemySupport === "Blitzcrank") {
-            reasons.push(
-              "Janna W can interrupt Blitzcrank mid-Rocket Grab animation. Position slightly behind your ADC and you become a human shield against the hook",
-            );
-            tips.push(
-              "Never stand in a straight line between Blitz and your ADC. Use Q tornado to bait the hook cooldown, then free-farm",
-            );
-            tips.push(
-              "After a hook lands, immediately ult, the pushback separates Blitz from his grab target and resets the fight",
-            );
-          } else if (enemySupport === "Thresh") {
-            reasons.push(
-              "Thresh's Death Sentence is blockable by walking into it, Janna can body-block for the ADC, and W interrupts his follow-through after a successful hook",
-            );
-            tips.push(
-              "Stay close to your ADC but at a 45-degree angle so you can physically block Death Sentence with your body",
-            );
-            tips.push(
-              "Watch for Thresh lantern, if your ADC gets hooked, he may drop it for enemy to follow up. W that engagement",
-            );
-          } else if (enemySupport === "Pyke") {
-            reasons.push(
-              "Pyke's hook range is shorter than you think. Janna Q tornado at long range shuts down his hook setup entirely and disrupts his roam timing",
-            );
-            tips.push(
-              "Pyke wants to R reset kills, don't let him stack gold. Janna W knocks him up mid-Phantom Undertow dash",
-            );
-          } else {
-            reasons.push(
-              `${enemySupport}'s hook is telegraphed. Janna Q at range punishes their positioning attempts`,
-            );
-            tips.push(
-              "Use Q poke to zone them away from hook angles. Save W to interrupt the follow-up after a hook lands",
-            );
-          }
-        } else if (isPoke) {
-          score -= 14;
-          if (enemySupport === "Xerath") {
-            reasons.push(
-              "Xerath's range completely outpokes Janna, he can zone her passive movement speed advantage and poke through her shield",
-            );
-            tips.push(
-              "Respect Xerath's Arcanopulse range and stay behind minions. You cannot fight this lane",
-            );
-            avoid =
-              "Soraka massively outperforms Janna here, her heal sustains through Xerath's entire pattern. Consider her instead";
-          } else if (enemySupport === "Zyra") {
-            reasons.push(
-              "Zyra's plants punish Janna's forward-aggressive passive playstyle, she gets pecked to death approaching the wave",
-            );
-            tips.push(
-              "Clear Zyra's plants with Q tornado. Your passive gives MS but walking into plant fields negates it",
-            );
-            avoid =
-              "Consider Soraka or Sona, both sustain or trade back better in this matchup";
-          } else if (enemySupport === "Vel'Koz") {
-            reasons.push(
-              "Vel'Koz's True Damage passive punishes Janna's lack of sustain, every poke combo is a significant HP chunk",
-            );
-            tips.push(
-              "Stay max range and funnel gold into shield building. Janna can sustain through one or two trades but not repeated poke combos",
-            );
-            avoid =
-              "Soraka counters poke lanes hard. Switch if you haven't locked in";
-          } else {
-            reasons.push(
-              `${enemySupport}'s poke pattern punishes Janna's passive laning. She wants to be in melee range, not dodging skillshots`,
-            );
-            tips.push(
-              "If playing Janna into poke, build Moonstone Renewer first for sustain over typical Ardent rush",
-            );
-            avoid = "Soraka or Sona handle this lane significantly better";
-          }
-        } else if (isEnchanter) {
-          score += 5;
-          if (enemySupport === "Yuumi") {
-            reasons.push(
-              "Yuumi can't be knocked up while attached, Janna W is partially wasted. But ult pushes away whoever Yuumi is attached to",
-            );
-            tips.push(
-              "Target the ADC Yuumi is attached to with Q poke. Force her to heal, burning her mana faster than Janna's sustain",
-            );
-          } else if (enemySupport === "Lulu") {
-            reasons.push(
-              "Enchanter mirror where Janna's pure disengage outlasts Lulu in late-game teamfights. Early lane is relatively even",
-            );
-            tips.push(
-              "Don't fight Lulu's poke pattern early. Save ult for the mid-game engage attempts when Lulu tries to be aggressive",
-            );
-          } else {
-            reasons.push(
-              `Enchanter mirror. Janna's disengage gives her an edge in extended teamfights over purely defensive enchanters`,
-            );
-            tips.push(
-              "Look for W poke in lane. Janna's Q tornado zoning wins the resource war against passive enchanters",
-            );
-          }
-        } else if (enemySupport === "Mel") {
-          score += 10;
-          reasons.push(
-            "Mel's W reflect can't stop Janna's non-projectile abilities. Her ult and W are completely safe to use at any point",
-          );
-          tips.push(
-            "Bait out Mel's W before committing to ult. She's melee-range vulnerable when W is on cooldown",
-          );
-        } else if (enemySupport === "Maokai") {
-          score += 12;
-          reasons.push(
-            "Maokai's Sapling Toss is slow and telegraphed, Janna Q poke disrupts his approach before he reaches brush radius",
-          );
-          tips.push(
-            "Zone Maokai away from brush with tornadoes. His saplings require plant cover to be effective",
-          );
-        } else if (enemySupport === "Morgana") {
-          score -= 8;
-          reasons.push(
-            "Morgana's Black Shield counters most of Janna's kit, W knock-up and Q tornado both get absorbed. Her spellshield is a hard counter to Janna's disengage",
-          );
-          tips.push(
-            "Let Morgana waste Black Shield on poke before committing your ult. She can only run one shield at a time",
-          );
-        } else if (enemySupport === "Swain") {
-          score -= 5;
-          reasons.push(
-            "Swain's Vision of Empire root catches Janna off-guard, he wants a drain fight which her disengage kit isn't designed to handle",
-          );
-          tips.push(
-            "Stay behind minion wave to avoid Swain's pull. If he roots you, immediately ult to push the follow-up dive away",
-          );
-        } else if (isTankDis || aggEngage.includes(enemySupport)) {
-          score += 18;
-          reasons.push(
-            `${enemySupport} is a dive/engage threat, Janna's kit provides the perfect answer`,
-          );
-          tips.push(
-            "Keep ult charged and react after they commit, not during the animation",
-          );
-        } else {
-          score += 3;
-          reasons.push(
-            `Neutral matchup into ${enemySupport}. Janna's consistent disengage makes her reliable regardless`,
-          );
-          tips.push(
-            "Play your standard pattern, Q poke, E shield your ADC on cooldown, save W and ult for defensive plays",
-          );
-        }
-      }
 
       // ── LULU ──
       if (champ === "Lulu") {
@@ -1354,7 +1067,7 @@ function getRecommendations(
               "If you do play Milio into Blitz, NEVER stand in a line with your ADC. Make Blitz choose between you two",
             );
             avoid =
-              "Strongly consider Janna or Lulu, both have better answers to Blitz's hook pattern";
+              "Strongly consider Lulu, both have better answers to Blitz's hook pattern";
           } else if (enemySupport === "Pyke") {
             score -= 12;
             reasons.push(
@@ -1486,7 +1199,7 @@ function getRecommendations(
               "If you insist on Sona, rush Boots of Swiftness immediately. More movement helps dodge Zenith Blades",
             );
             avoid =
-              "Pick Janna or Lulu instead. They have reliable engage-stoppers that Sona completely lacks";
+              "Pick Lulu instead. She has reliable engage-stoppers that Sona completely lacks";
           } else if (enemySupport === "Nautilus") {
             reasons.push(
               "Nautilus hook one-shots Sona's health bar with the follow-up CC chain. She can't Flash away in time and has no defensive abilities",
@@ -1495,7 +1208,7 @@ function getRecommendations(
               "Hug tower at all times. Sona's only defense vs Naut is never being in range of Dredge Line",
             );
             avoid =
-              "Milio (cleanse ult) or Janna are far better into Nautilus. Sona is a liability here";
+              "Milio (cleanse ult) is far better into Nautilus. Sona is a liability here";
           } else {
             reasons.push(
               `Sona has no mobility and no CC-breaking tools, ${enemySupport} just runs her down before she can use Crescendo`,
@@ -1504,7 +1217,7 @@ function getRecommendations(
               "Force ult cleanse on specific engage picks. But honestly this is the wrong champion for this lane",
             );
             avoid =
-              "Play Janna or Lulu instead, they both have point-and-click engage disruption that Sona doesn't";
+              "Play Lulu instead, she has point-and-click engage disruption that Sona doesn't";
           }
         } else if (isHook) {
           score -= 20;
@@ -1516,7 +1229,7 @@ function getRecommendations(
               "Hug tower at level 1-2. If Blitz gets a hook, you've likely lost a summoner or your life",
             );
             avoid =
-              "Milio, Janna, or Lulu all survive this much better. Sona into Blitz is playing on hard mode";
+              "Milio or Lulu survive this much better. Sona into Blitz is playing on hard mode";
           } else if (enemySupport === "Thresh") {
             reasons.push(
               "Thresh Death Sentence catches Sona easily, she can't dodge with no gap-close and has no shield to absorb the CC chain",
@@ -1532,7 +1245,7 @@ function getRecommendations(
               "Position behind your ADC at all times. Never be in hook range. Your only defense is never getting caught",
             );
             avoid =
-              "Milio's cleanse ult or Janna's disengage handles hook supports much safer";
+              "Milio's cleanse ult disengage handles hook supports much safer";
           }
         } else if (isPoke) {
           score += 20;
@@ -1678,7 +1391,7 @@ function getRecommendations(
               "Soraka becomes a global ult heal bot from base if things go badly. Farm at tower and use R to save teammates elsewhere",
             );
             avoid =
-              "The worst possible matchup. Play Milio with cleanse ult or Janna with disengage instead";
+              "The worst possible matchup. Play Milio with cleanse ult instead";
           } else {
             reasons.push(
               `Terrible into ${enemySupport}, Soraka is immobile, critical to kill, and has no defensive CC to prevent the all-in`,
@@ -1687,7 +1400,7 @@ function getRecommendations(
               "Your only contribution in a losing lane is global ult healing. Don't die, a dead Soraka can't use her ult",
             );
             avoid =
-              "Play Janna or Lulu into engage. Soraka into engage is the worst enchanter matchup pattern in the game";
+              "Play Lulu into engage. Soraka into engage is the worst enchanter matchup pattern in the game";
           }
         } else if (isHook) {
           score -= 24;
@@ -2240,12 +1953,6 @@ function getRecommendations(
           "Safe blind pick. Excellent in most matchups, only genuine weaknesses are hook and hard engage, both of which are manageable with positioning",
         );
       }
-      if (champ === "Janna") {
-        score += 8;
-        reasons.push(
-          "Safe blind pick. Engage is the most common threat in the meta and Janna is the hardest counter to engage supports in the game",
-        );
-      }
       if (champ === "Lulu") {
         score += 10;
         reasons.push(
@@ -2488,74 +2195,6 @@ function getRecommendations(
           score += 8;
           reasons.push(
             "Lulu ult gives Mel the buffer to survive all-in attempts and polymorph stops engage champions before they can interrupt Mel's passive stacking",
-          );
-        }
-      }
-
-      // ── JANNA ADC synergies ──
-      if (champ === "Janna") {
-        if (allyAdc === "Vayne") {
-          score += 14;
-          reasons.push(
-            "Janna ult + Vayne Condemn is a perfect combo, ult repositions Vayne next to a wall, Condemn finishes the job. Disengage also gives Vayne the time to tumble into perfect angles",
-          );
-          tips.push(
-            "Coordinate ult direction with your Vayne. Push enemies toward walls rather than away, she can Condemn for the stun",
-          );
-        } else if (allyAdc === "KogMaw") {
-          score += 16;
-          reasons.push(
-            "Protect-the-Kog with Janna disengage, W peel, E shield, ult escape. Kog never needs to move if Janna removes threats from him",
-          );
-          items.push({
-            name: "Ardent Censer",
-            why: "Kog'Maw on-hit Ardent proc is the strongest in the game. Buy this 2nd always",
-          });
-        } else if (isHypercarry) {
-          score += 13;
-          reasons.push(
-            `${allyAdc} needs to stay safe and attack from max range. Janna's full kit provides perfect peel, E shield on cooldown, W on divers, ult as last resort`,
-          );
-          items.push({
-            name: "Ardent Censer",
-            why: `${allyAdc} is an on-hit carry. Ardent censer buff is significant, buy it every game`,
-          });
-        } else if (isPokingAdc) {
-          score += 7;
-          reasons.push(
-            `Safe poke lane with ${allyAdc}. Janna W peel shuts down any gap-close attempts while ${allyAdc} pokes freely from behind`,
-          );
-          tips.push(
-            "Shield your poke ADC before fights start. Your E shield lets them absorb one trade and immediately poke back without HP loss",
-          );
-        } else if (allyAdc === "Jinx") {
-          score += 12;
-          reasons.push(
-            "Janna + Jinx scaling is excellent, Janna's disengage keeps Jinx alive through her fragile early phase and ult removes dives during her teamfight AoE window",
-          );
-          tips.push(
-            "Janna ult when Jinx is being dove on during Bullet Time channel, push the diver away mid-channel to save her cast",
-          );
-        } else if (allyAdc === "Samira") {
-          score -= 5;
-          reasons.push(
-            "Janna's disengage playstyle conflicts with Samira's all-in aggression. Janna pushing enemies away undoes Samira's combo setup",
-          );
-          tips.push(
-            "If playing with Samira, focus on E shielding and W poke rather than ult. Let Samira set up the fights, don't push enemies away",
-          );
-        } else if (isAllIn) {
-          score -= 3;
-          reasons.push(
-            `${allyAdc} wants to all-in, Janna's ult pushes enemies away from them. Mechanical conflict between support and carry playstyle`,
-          );
-          tips.push(
-            "Let your ADC engage first, then shield them during the all-in. Use W for peel rather than ult when they're in commit range",
-          );
-        } else if (allyAdc === "Yunara") {
-          score += 14;
-          reasons.push(
-            "Yunara needs peel while she builds Q stacks, Janna's full disengage keeps her alive during the ramp-up phase. Once stacked, Janna E shield keeps her tanky through the burst",
           );
         }
       }
