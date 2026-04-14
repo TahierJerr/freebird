@@ -270,7 +270,7 @@ const IMPACT_LABEL: Record<string, string> = {
 function StatRow({ change }: { change: StatChange }) {
   return (
     <div className="flex items-center gap-2 text-xs py-1 border-b border-gray-50 last:border-0">
-      <span className="text-gray-500 w-36 flex-shrink-0">{change.stat}</span>
+      <span className="text-gray-500 w-36 shrink-0">{change.stat}</span>
       <span className="text-rose-500 line-through">{change.before}</span>
       <span className="text-gray-400">→</span>
       <span className="text-emerald-600 font-medium">{change.after}</span>
@@ -289,7 +289,7 @@ function PatchCard({ entry }: { entry: PatchEntry }) {
         className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${cfg.bg} hover:brightness-95`}
       >
         {/* champ icon */}
-        <div className="relative w-10 h-10 rounded-xl overflow-hidden border-2 border-white shadow-sm flex-shrink-0">
+        <div className="relative w-10 h-10 rounded-xl overflow-hidden border-2 border-white shadow-sm shrink-0">
           <Image
             src={getChampionImageUrl(entry.champ)}
             alt={entry.champ}
@@ -322,7 +322,7 @@ function PatchCard({ entry }: { entry: PatchEntry }) {
           {/* impact + summary */}
           <div className="flex items-center gap-1.5 mt-0.5">
             <span
-              className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${IMPACT_DOT[entry.impact]}`}
+              className={`w-1.5 h-1.5 rounded-full shrink-0 ${IMPACT_DOT[entry.impact]}`}
             />
             <span className="text-xs text-gray-500">
               {IMPACT_LABEL[entry.impact]}
@@ -331,7 +331,7 @@ function PatchCard({ entry }: { entry: PatchEntry }) {
         </div>
 
         <ChevronDown
-          className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform ${expanded ? "rotate-180" : ""}`}
+          className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${expanded ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -367,7 +367,7 @@ function PatchCard({ entry }: { entry: PatchEntry }) {
           {/* relevant to badge */}
           {entry.relevantTo && (
             <div className="flex items-center gap-2">
-              <AlertTriangle className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
+              <AlertTriangle className="w-3.5 h-3.5 text-amber-500 shrink-0" />
               <p className="text-xs text-amber-700">
                 Most relevant to your pool:{" "}
                 <span className="font-semibold">{entry.relevantTo}</span>
@@ -416,7 +416,7 @@ export function PatchNotes() {
               Changes relevant to your pool and the current meta
             </p>
           </div>
-          <div className="flex items-center gap-2 flex-shrink-0 text-xs">
+          <div className="flex items-center gap-2 shrink-0 text-xs">
             <span className="flex items-center gap-1 text-emerald-600 font-semibold">
               <TrendingUp className="w-3 h-3" /> {buffCount}
             </span>

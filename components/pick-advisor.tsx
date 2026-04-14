@@ -762,7 +762,6 @@ function getRecommendations(
       "Neeko",
       "Anivia",
     ];
-    const aggEngage = ["Pantheon", "Fiddlesticks", "LeBlanc"];
     const tankDisengage = ["Braum", "Tahm Kench", "Poppy", "Shen"];
     const enchanterEnemy = [
       "Soraka",
@@ -777,19 +776,15 @@ function getRecommendations(
       "Zilean",
       "Renata Glasc",
     ];
-    const utilHybrid = ["Morgana", "Senna", "Bard", "Swain", "Maokai"];
 
     const isHardEngage = hardEngage.includes(enemySupport);
     const isHook = hookOrBurst.includes(enemySupport);
     const isPoke = pokeMage.includes(enemySupport);
-    const isAggEngage = aggEngage.includes(enemySupport);
     const isTankDis = tankDisengage.includes(enemySupport);
     const isEnchanter = enchanterEnemy.includes(enemySupport);
-    const isUtility = utilHybrid.includes(enemySupport);
     const enemyUnknown = enemySupport === "Unknown";
 
     // ── ally ADC classification ──
-    const onHitAdcs = ["KogMaw", "Vayne", "Twitch", "Smolder", "Yunara"];
     const pokeAdcs = [
       "Caitlyn",
       "Ezreal",
@@ -816,7 +811,6 @@ function getRecommendations(
       "Zeri",
       "Yunara",
     ];
-    const utilityAdcs = ["Ashe", "Sivir", "Xayah", "MissFortune"];
     const mageAdc = [
       "Mel",
       "Brand",
@@ -828,7 +822,6 @@ function getRecommendations(
       "Aurelion Sol",
     ];
 
-    const isOnHit = onHitAdcs.includes(allyAdc);
     const isPokingAdc = pokeAdcs.includes(allyAdc);
     const isAllIn = allInAdcs.includes(allyAdc);
     const isHypercarry = hypercarryAdcs.includes(allyAdc);
@@ -2543,7 +2536,7 @@ function MatchupRow({
   return (
     <div className="flex items-start gap-2">
       <div
-        className={`relative w-7 h-7 rounded-lg overflow-hidden flex-shrink-0 border ${border}`}
+        className={`relative w-7 h-7 rounded-lg overflow-hidden shrink-0 border ${border}`}
       >
         <Image
           src={getChampionImageUrl(item.name)}
@@ -2586,13 +2579,13 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
       >
         {/* rank badge */}
         <div
-          className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${rank === 0 ? "bg-pink-400 text-white" : "bg-pink-100 text-pink-500"}`}
+          className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${rank === 0 ? "bg-pink-400 text-white" : "bg-pink-100 text-pink-500"}`}
         >
           {rank + 1}
         </div>
 
         {/* champ icon */}
-        <div className="relative w-10 h-10 rounded-xl overflow-hidden border-2 border-white shadow-sm flex-shrink-0">
+        <div className="relative w-10 h-10 rounded-xl overflow-hidden border-2 border-white shadow-sm shrink-0">
           <Image
             src={getChampionImageUrl(rec.champ)}
             alt={rec.champ}
@@ -2630,7 +2623,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
           {/* blind pick indicator */}
           <div className="flex items-center gap-1 mt-0.5">
             <span
-              className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${BLIND_DOT[rec.blindPick]}`}
+              className={`w-1.5 h-1.5 rounded-full shrink-0 ${BLIND_DOT[rec.blindPick]}`}
             />
             <span className={`text-xs ${BLIND_LABEL_STYLE[rec.blindPick]}`}>
               {rec.blindLabel}
@@ -2646,7 +2639,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
         </div>
 
         <ChevronDown
-          className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform ${expanded ? "rotate-180" : ""}`}
+          className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${expanded ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -2674,7 +2667,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
             <div className="px-4 pb-4 pt-3 space-y-3">
               {rec.avoid && (
                 <div className="flex items-start gap-2 bg-rose-50 border border-rose-100 rounded-lg px-3 py-2">
-                  <AlertTriangle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-3.5 h-3.5 text-rose-500 shrink-0 mt-0.5" />
                   <p className="text-xs text-rose-600">{rec.avoid}</p>
                 </div>
               )}
@@ -2686,7 +2679,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
                   </p>
                   {rec.reasons.map((r, i) => (
                     <p key={i} className="text-xs text-gray-600 flex gap-1.5">
-                      <span className="text-pink-400 flex-shrink-0 mt-0.5">
+                      <span className="text-pink-400 shrink-0 mt-0.5">
                         •
                       </span>
                       {r}
@@ -2702,7 +2695,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
                   </p>
                   {rec.tips.map((t, i) => (
                     <p key={i} className="text-xs text-gray-600 flex gap-1.5">
-                      <span className="text-amber-400 flex-shrink-0 mt-0.5">
+                      <span className="text-amber-400 shrink-0 mt-0.5">
                         →
                       </span>
                       {t}
@@ -2721,7 +2714,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
                       key={item.name}
                       className="flex items-start gap-2 bg-pink-50/60 rounded-lg px-2.5 py-1.5"
                     >
-                      <span className="text-xs font-semibold text-pink-700 flex-shrink-0">
+                      <span className="text-xs font-semibold text-pink-700 shrink-0">
                         {item.name}
                       </span>
                       <span className="text-xs text-gray-500">{item.why}</span>
@@ -2763,7 +2756,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
                       key={c}
                       className="text-xs text-gray-500 flex gap-1.5 pl-1"
                     >
-                      <span className="text-emerald-400 flex-shrink-0">•</span>
+                      <span className="text-emerald-400 shrink-0">•</span>
                       {c}
                     </p>
                   ))}
@@ -2786,7 +2779,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
                       key={c}
                       className="text-xs text-gray-500 flex gap-1.5 pl-1"
                     >
-                      <span className="text-rose-400 flex-shrink-0">•</span>
+                      <span className="text-rose-400 shrink-0">•</span>
                       {c}
                     </p>
                   ))}
@@ -2800,7 +2793,7 @@ function ResultCard({ rec, rank }: { rec: Recommendation; rank: number }) {
                 </p>
                 <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2">
                   <span
-                    className={`w-2 h-2 rounded-full flex-shrink-0 ${BLIND_DOT[rec.blindPick]}`}
+                    className={`w-2 h-2 rounded-full shrink-0 ${BLIND_DOT[rec.blindPick]}`}
                   />
                   <span
                     className={`text-xs font-semibold ${BLIND_LABEL_STYLE[rec.blindPick]}`}
@@ -2851,7 +2844,7 @@ function ChampSelect({
           className="w-full cursor-pointer flex items-center gap-2 rounded-xl border border-pink-200 bg-white px-3 py-2.5 text-sm text-left hover:border-pink-300 transition-colors"
         >
           {value && value !== "Unknown" ? (
-            <div className="relative w-7 h-7 rounded-lg overflow-hidden border border-pink-100 flex-shrink-0">
+            <div className="relative w-7 h-7 rounded-lg overflow-hidden border border-pink-100 shrink-0">
               <Image
                 src={getChampionImageUrl(value)}
                 alt={value}
@@ -2861,7 +2854,7 @@ function ChampSelect({
               />
             </div>
           ) : (
-            <div className="w-7 h-7 rounded-lg bg-pink-50 border border-pink-100 flex items-center justify-center flex-shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-pink-50 border border-pink-100 flex items-center justify-center shrink-0">
               <HelpCircle className="w-4 h-4 text-pink-300" />
             </div>
           )}
@@ -2879,7 +2872,7 @@ function ChampSelect({
           <div className="absolute z-20 top-full left-0 right-0 mt-1 rounded-xl border border-pink-100 bg-white shadow-lg overflow-hidden">
             <div className="px-3 py-2 border-b border-pink-50">
               <div className="flex items-center gap-2 bg-pink-50 rounded-lg px-2.5 py-1.5">
-                <Search className="w-3.5 h-3.5 text-pink-300 flex-shrink-0" />
+                <Search className="w-3.5 h-3.5 text-pink-300 shrink-0" />
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -2901,11 +2894,11 @@ function ChampSelect({
                   className={`w-full flex items-center gap-2.5 px-3 py-2 text-sm hover:bg-pink-50 transition-colors text-left ${value === opt ? "bg-pink-50" : ""}`}
                 >
                   {opt === "Unknown" ? (
-                    <div className="w-6 h-6 rounded-md bg-pink-50 border border-pink-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-6 h-6 rounded-md bg-pink-50 border border-pink-100 flex items-center justify-center shrink-0">
                       <HelpCircle className="w-3.5 h-3.5 text-pink-400" />
                     </div>
                   ) : (
-                    <div className="relative w-6 h-6 rounded-md overflow-hidden border border-pink-100 flex-shrink-0">
+                    <div className="relative w-6 h-6 rounded-md overflow-hidden border border-pink-100 shrink-0">
                       <Image
                         src={getChampionImageUrl(opt)}
                         alt={opt}

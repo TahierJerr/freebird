@@ -203,7 +203,7 @@ export function ItemizationGuide() {
             >
               {/* item header */}
               <div className="flex items-start gap-3">
-                <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-pink-200 flex-shrink-0 shadow-sm">
+                <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-pink-200 shrink-0 shadow-sm">
                   <Image
                     src={`https://ddragon.leagueoflegends.com/cdn/14.24.1/img/item/${item.id}.png`}
                     alt={item.name}
@@ -242,7 +242,7 @@ export function ItemizationGuide() {
                 <ul className="space-y-0.5">
                   {item.when.map((w) => (
                     <li key={w} className="text-xs text-gray-600 flex gap-1.5">
-                      <span className="text-pink-300 flex-shrink-0">•</span>
+                      <span className="text-pink-300 shrink-0">•</span>
                       {w}
                     </li>
                   ))}
